@@ -14,6 +14,7 @@ private:
 	int m_iSpeed;
 	float m_fFade;
 	cvar_t *m_pCvarSpeedometer;
+	cvar_t *m_pCvarSpeedometerBelowCross;
 };
 
 #endif // __HUD_SPEEDOMETER_H__

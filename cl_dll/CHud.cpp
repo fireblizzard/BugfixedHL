@@ -350,6 +350,18 @@ void __CmdFunc_ToggleCvar(void)
 	}
 }
 
+void __CmdFunc_Append()
+{
+	if (gEngfuncs.Cmd_Argc() != 2) {
+		if (!gEngfuncs.pDemoAPI->IsPlayingback())
+			gEngfuncs.Con_Printf("append <command> - put the command into the end of the command buffer.\n");
+
+		return;
+	}
+
+	ClientCmd(gEngfuncs.Cmd_Argv(1));
+}
+
 // TFFree Command Menu Message Handlers
 int __MsgFunc_ValClass(const char *pszName, int iSize, void *pbuf)
 {
@@ -513,6 +525,9 @@ void CHud :: Init( void )
 	HOOK_COMMAND( "forcecolors", ForceColors );
 	HOOK_COMMAND( "customtimer", CustomTimer );
 	HOOK_COMMAND( "_toggle", ToggleCvar );
+
+	HOOK_COMMAND( "append", Append );
+	ClientCmd("alias zpecial \"append _zpecial\"");
 
 	HOOK_MESSAGE( ValClass );
 	HOOK_MESSAGE( TeamNames );
